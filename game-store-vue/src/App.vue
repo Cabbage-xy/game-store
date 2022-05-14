@@ -1,9 +1,12 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <el-container>
+    <el-header>
+      <common-header></common-header>
+    </el-header>
+    <el-main>
+      <router-view></router-view>
+    </el-main>
+  </el-container>
 </template>
 
 <style>
@@ -14,17 +17,23 @@
   text-align: center;
   color: #2c3e50;
 }
-
-nav {
-  padding: 30px;
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.login {
+  margin-right: 10;
+  width: 100px;
 }
 </style>
+
+<script>
+import CommonHeader from "./components/CommonHeader.vue";
+
+export default {
+  components: {
+    CommonHeader,
+  },
+};
+</script>
