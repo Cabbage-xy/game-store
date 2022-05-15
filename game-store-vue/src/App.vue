@@ -26,6 +26,12 @@ body {
   margin-right: 10;
   width: 100px;
 }
+.el-header {
+  padding: 0 !important;
+}
+.el-main {
+  padding: 0 !important;
+}
 </style>
 
 <script>
