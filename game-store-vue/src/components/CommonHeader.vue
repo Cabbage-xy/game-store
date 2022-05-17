@@ -12,18 +12,11 @@
             <span>{{ item.lable }}</span>
           </template>
         </el-menu-item>
-        <!-- <el-menu-item @click="clickLogin">
-        <template v-slot:title>
-          <span>登录</span>
-        </template>
-      </el-menu-item> -->
-      <div class="button-wrap">
-      <el-button @click="clickLogin" type="primary">登录</el-button>
-    </div>
+        <div class="button-wrap">
+          <el-button @click="clickLogin()" type="primary">登录</el-button>
+        </div>
       </el-menu>
     </div>
-
-    
   </div>
 </template>
 <style scoped>
@@ -45,10 +38,13 @@
 </style>
 
 <script>
+//import router from '@/router';
+//import { reactive } from '@vue/reactivity';
+import { useRouter } from "vue-router"
 export default {
-  data() {
-    return {
-      menu: [
+  setup() {
+    const menu = 
+        [
         {
           path: "/",
           name: "home",
@@ -70,20 +66,64 @@ export default {
           icon: "user",
           url: "Exchange/Exchange",
         },
-      ],
-    };
-  },
-  methods: {
-    clickMenu(item) {
-      this.$router.push({
-        name: item.name,
+      ];
+    const router = useRouter();
+    const clickMenu = (item) => {
+      router.push({
+        name: item.name
       });
-    },
-    clickLogin() {
-      this.$router.push({
+    };
+    const clickLogin = () => {
+      router.push({
         name: "login",
       });
-    },
+    };
+    return {
+      menu,
+      clickMenu,
+      clickLogin,
+    };
   },
 };
+// export default {
+//   data() {
+//     return {
+//       menu: [
+//         {
+//           path: "/",
+//           name: "home",
+//           lable: "首页",
+//           icon: "s-home",
+//           url: "Home/Home",
+//         },
+//         {
+//           path: "/balance",
+//           name: "balance",
+//           lable: "余额交易",
+//           icon: "video-play",
+//           url: "Balance/Balance",
+//         },
+//         {
+//           path: "/exchange",
+//           name: "exchange",
+//           lable: "物物交易",
+//           icon: "user",
+//           url: "Exchange/Exchange",
+//         },
+//       ],
+//     };
+//   },
+//   methods: {
+//     clickMenu(item) {
+//       this.$router.push({
+//         name: item.name,
+//       });
+//     },
+//     clickLogin() {
+//       this.$router.push({
+//         name: "login",
+//       });
+//     },
+//   },
+// };
 </script>
