@@ -5,6 +5,7 @@
     </el-header>
     <el-main>
       <router-view></router-view>
+      <login-dialog></login-dialog>
     </el-main>
   </el-container>
 </template>
@@ -36,10 +37,12 @@ body {
 
 <script>
 import CommonHeader from "./components/CommonHeader.vue";
+import LoginDialog from "./components/LoginDialog.vue";
 
 export default {
   components: {
     CommonHeader,
+    LoginDialog
   },
 };
 </script>

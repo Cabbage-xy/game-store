@@ -41,6 +41,7 @@
 //import router from '@/router';
 //import { reactive } from '@vue/reactivity';
 import { useRouter } from "vue-router"
+import { useStore } from "vuex";
 export default {
   setup() {
     const menu = 
@@ -73,10 +74,9 @@ export default {
         name: item.name
       });
     };
+    const store = useStore();
     const clickLogin = () => {
-      router.push({
-        name: "login",
-      });
+      store.commit("showLoginDialog");
     };
     return {
       menu,
