@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="dialogFormVisible" :append-to-body="false" title="登录">
+  <el-dialog v-model="dialogFormVisible" :append-to-body="false" title="登录" @closed="closeDialog()">
     <el-form ref="login" :rules="rules" :model="form">
       <el-form-item prop="name" label="用户名" :label-width="formLabelWidth">
         <el-input v-model="form.name" autocomplete="off" />
