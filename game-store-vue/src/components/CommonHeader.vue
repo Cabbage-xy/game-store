@@ -13,7 +13,11 @@
           </template>
         </el-menu-item>
         <div class="button-wrap">
-          <el-button @click="clickLogin()" type="primary">登录</el-button>
+          <el-button-group>
+            <el-button @click="clickLogin()" type="primary">登录</el-button>
+            <el-button @click="clickRegister()" type="primary">注册</el-button>
+          </el-button-group>
+          
         </div>
       </el-menu>
     </div>
@@ -78,10 +82,14 @@ export default {
     const clickLogin = () => {
       store.commit("showLoginDialog");
     };
+    const clickRegister = () => {
+      store.commit("showRegisterDialog");
+    }
     return {
       menu,
       clickMenu,
       clickLogin,
+      clickRegister
     };
   },
 };
