@@ -2,7 +2,7 @@
   <el-dialog v-model="dialogFormVisible" :append-to-body="false" title="登录" @closed="closeDialog()">
     <el-form ref="login" :rules="rules" :model="form">
       <el-form-item prop="name" label="用户名" :label-width="formLabelWidth">
-        <el-input v-model="form.name" autocomplete="off" />
+        <el-input v-model="form.name" placeholder="请输入用户名" autocomplete="off" />
       </el-form-item>
       <el-form-item prop="password" label="密码" :label-width="formLabelWidth" @keyup.enter="handleLogin()">
           <el-input type="password" v-model="form.password" placeholder="请输入密码" autocomplete="off" />
