@@ -10,7 +10,7 @@
         <el-col v-for="prop in cols" :key="prop.name" :span="5">
           <el-card :body-style="{ padding: '0px' }">
             <!-- <img :src="'../..' + prop.pic" class="image" /> -->
-            <img src="../../file/img.jpg" class="image" />
+            <img :src="prop.pic" class="image" />
             <div style="padding: 14px">
               <span>{{ prop.name }}</span>
               <div class="bottom">
@@ -25,8 +25,7 @@
 </template>
 
 <style scoped>
-.common-layout {
-}
+
 .prop-list {
   display: flex;
   flex-direction: column;
@@ -37,9 +36,6 @@
 }
 .el-col {
   padding: 10 !important;
-}
-.box-card {
-  /*margin: 10 !important;*/
 }
 .bottom {
   margin-top: 13px;
@@ -65,7 +61,7 @@ export default {
       {
         name: "第1个",
         price: "100",
-        pic: "/file/img.jpg",
+        pic: require("../assets/logo.png"),
       },
       {
         name: "第2个",
