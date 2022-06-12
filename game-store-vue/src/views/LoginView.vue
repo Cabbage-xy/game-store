@@ -1,7 +1,7 @@
 <template>
   <div class="login-wrap">
     <div class="ms-login">
-      <div class="ms-title">后台管理系统</div>
+      <div class="ms-title">游戏道具交易</div>
       <el-form
         :model="form"
         :rules="rules"
@@ -10,7 +10,7 @@
         class="ms-content"
       >
         <el-form-item prop="username">
-          <el-input v-model="form.username" placeholder="username">
+          <el-input v-model="form.username" placeholder="用户名">
             <template #prepend>
               <el-button icon="el-icon-user"></el-button>
             </template>
@@ -19,7 +19,7 @@
         <el-form-item prop="password">
           <el-input
             type="password"
-            placeholder="password"
+            placeholder="密码"
             v-model="form.password"
             @keyup.enter="submitForm()"
           >
@@ -36,6 +36,57 @@
     </div>
   </div>
 </template>
+
+<script>
+import { useRouter } from "vue-router";
+import { reactive, ref } from "vue";
+import { ElMessage } from "element-plus";
+export default {
+  setup() {
+    const router = useRouter();
+    const handleLogin = () => {
+      router.push({
+        name: "home",
+      });
+    };
+    const form = reactive({
+      username: "",
+      password: "",
+    });
+    const rules = {
+      username: [
+        {
+          required: true,
+          message: "请输入用户名",
+          trigger: "blur",
+        },
+      ],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+    };
+    const login = ref(null);
+    const submitForm = () => {
+      login.value.validate((valid) => {
+        if (valid) {
+          ElMessage.success("登录成功");
+          localStorage.setItem("ms_username", form.username);
+          router.push("/");
+        } else {
+          ElMessage.error("登录失败");
+          return false;
+        }
+      });
+    };
+    return {
+      handleLogin,
+      form,
+      rules,
+      login,
+      submitForm,
+    };
+  },
+};
+</script>
+
 <style scoped>
 .login-wrap {
   position: relative;
@@ -79,51 +130,3 @@
   color: #fff;
 }
 </style>
-<script>
-import { useRouter } from "vue-router";
-import { reactive, ref } from "vue";
-import { ElMessage } from "element-plus";
-export default {
-  setup() {
-    const router = useRouter();
-    const handleLogin = () => {
-      router.push({
-        name: "home",
-      });
-    };
-    const form = reactive({
-      username: "add",
-      password: "12345",
-    });
-    const rules = {
-      username: [
-        {
-          required: true,
-          message: "请输入用户名",
-          trigger: "blur",
-        },
-      ],
-      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-    };
-    const login = ref(null);
-    const submitForm = () => {
-      login.value.validate((valid) => {
-        if (valid) {
-          ElMessage.success("登录成功");
-          localStorage.setItem("ms_username", form.username);
-          router.push("/");
-        } else {
-          ElMessage.error("登录失败");
-          return false;
-        }
-      });
-    };
-    return {
-      handleLogin,
-      form,
-      rules,
-      submitForm,
-    };
-  },
-};
-</script>

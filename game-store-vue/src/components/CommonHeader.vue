@@ -102,7 +102,7 @@
 //import router from '@/router';
 //import { reactive } from '@vue/reactivity';
 //import { useRouter } from "vue-router";
-import { useRoute } from "vue-router";
+import { useRoute,useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { computed } from "vue";
 export default {
@@ -137,7 +137,6 @@ export default {
       // });
     };
     const route = useRoute();
-
         const onRoutes = computed(() => {
             return route.path;
         });
@@ -152,13 +151,21 @@ export default {
       name: "我是用户名",
       balance: 20,
     };
+    const router = useRouter();
+    const handleCommand = (command) => {
+            if (command == "loginout") {
+                localStorage.removeItem("ms_username");
+                router.push("/login");
+            }
+    };
     return {
       menu,
       clickMenu,
       clickLogin,
       clickRegister,
       userData,
-      onRoutes
+      onRoutes,
+      handleCommand
     };
   },
 };
